@@ -8,9 +8,9 @@ namespace Agile.Common.Cqrs.Persistence
 {
     public static class RepositoryExtensions
     {
-        public static void Save(this IRepository repository, IAggregate aggregate, Guid commitId)
+        public async static Task Save(this IRepository repository, IAggregate aggregate, Guid commitId)
         {
-            repository.Save(aggregate, commitId, a => { });
+            await repository.Save(aggregate, commitId, a => { });
         }
     }
 }

@@ -40,6 +40,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\AddStoryComandHandler.cs" />
+    <Compile Include="CommandHandlers\ChangeStoryTitleCommandHandler.cs" />
+    <Compile Include="Commands\AddStoryCommand.cs" />
+    <Compile Include="Commands\ChangeStoryTitleCommand.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

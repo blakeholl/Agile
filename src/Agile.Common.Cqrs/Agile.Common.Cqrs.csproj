@@ -41,8 +41,14 @@
     <Compile Include="Core\ExtensionMethods.cs" />
     <Compile Include="Core\HandlerForDomainEventNotFoundException.cs" />
     <Compile Include="IAggregate.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandHandler.cs" />
     <Compile Include="IDetectConflicts.cs" />
+    <Compile Include="IDomainEvent.cs" />
+    <Compile Include="IDomainEventHandler.cs" />
     <Compile Include="IMemento.cs" />
+    <Compile Include="IQuery.cs" />
+    <Compile Include="IQueryHandler.cs" />
     <Compile Include="IRouteEvents.cs" />
     <Compile Include="Persistence\PersistenceException.cs" />
     <Compile Include="Persistence\ConflictingCommandException.cs" />

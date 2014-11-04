@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Agile.Common.Cqrs.Implementation.Persistence
 {
+    [Serializable]
     public class AggregateVersionException : Exception
     {
         public readonly Guid Id;

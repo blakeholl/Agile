@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Agile.Common.Cqrs.Core
 {
+    [Serializable]
     public class HandlerForDomainEventNotFoundException : Exception
     {
         public HandlerForDomainEventNotFoundException()

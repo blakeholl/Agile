@@ -2,6 +2,7 @@
 
 namespace Agile.Common.Cqrs.Implementation.Persistence
 {
+    [Serializable]
     public class AggregateDeletedException : Exception
     {
         public readonly Guid Id;

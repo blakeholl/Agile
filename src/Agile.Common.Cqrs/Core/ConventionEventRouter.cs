@@ -27,7 +27,7 @@ namespace Agile.Common.Cqrs.Core
             Register(aggregate);
         }
 
-        public virtual void Register<T>(Action<T> handler)
+        public void Register<T>(Action<T> handler)
         {
             if (handler == null)
                 throw new ArgumentNullException("handler");
@@ -35,7 +35,7 @@ namespace Agile.Common.Cqrs.Core
             Register(typeof(T), @event => handler((T)@event));
         }
 
-        public virtual void Register(IAggregate aggregate)
+        public void Register(IAggregate aggregate)
         {
             if (aggregate == null)
                 throw new ArgumentNullException("aggregate");
@@ -59,7 +59,7 @@ namespace Agile.Common.Cqrs.Core
             }
         }
 
-        public virtual void Dispatch(object eventMessage)
+        public void Dispatch(object eventMessage)
         {
             if (eventMessage == null)
                 throw new ArgumentNullException("eventMessage");

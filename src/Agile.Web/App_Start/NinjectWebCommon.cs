@@ -1,6 +1,11 @@
 using System.Net;
+using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
+using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Implementation.Persistence;
+using Agile.Common.Cqrs.Persistence;
+using Agile.Planning.Domain.CommandHandlers;
+using Agile.Planning.Domain.Commands;
 using EventStore.ClientAPI;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Agile.Web.App_Start.NinjectWebCommon), "Start")]
@@ -73,6 +78,14 @@ namespace Agile.Web.App_Start
                     connection.ConnectAsync().Wait();
                     return connection;
                 })
+                .InSingletonScope();
+
+            kernel.Bind<IRepository>()
+                .To<GetEventStoreRepository>()
+                .InRequestScope();
+
+            kernel.Bind<ICommandHandler<AddStoryCommand>>()
+                .To<AddStoryComandHandler>()
                 .InRequestScope();
         }        
     }

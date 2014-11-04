@@ -5,26 +5,43 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Implementation.Persistence;
+using Agile.Planning.Domain.Commands;
 using Agile.Planning.Domain.Models;
 
 namespace Agile.Web.Controllers
 {
     public class StoriesController : ApiController
     {
-        private readonly GetEventStoreRepository _eventStoreRepository;
+        private readonly ICommandHandler<AddStoryCommand> _commandHandler;
 
-        public StoriesController(GetEventStoreRepository eventStoreRepository)
+        public StoriesController(ICommandHandler<AddStoryCommand> commandHandler)
         {
-            _eventStoreRepository = eventStoreRepository;
+            _commandHandler = commandHandler;
+        }
+
+        public async Task<IHttpActionResult> Get()
+        {
+            return await Post(new CreateStoryModel()
+            {
+                Title = "Some random title",
+                Description = "Some random description"
+            });
         }
 
         public async Task<IHttpActionResult> Post(CreateStoryModel model)
         {
-            var id = Guid.NewGuid();
-            var story = new Story(id, model.Title, model.Description);
-            await _eventStoreRepository.Save(story, Guid.NewGuid(), objects => { });
-            return Created(Url.Link("DefaultApi", new {controller = "Stories"}), new {id});
+            var command = new AddStoryCommand()
+            {
+                Id = Guid.NewGuid(),
+                Title = model.Title,
+                Description = model.Description
+            };
+
+            await _commandHandler.Handle(command);
+
+            return Created(Url.Link("DefaultApi", new {controller = "Stories"}), new {command.Id});
         }
     }
 

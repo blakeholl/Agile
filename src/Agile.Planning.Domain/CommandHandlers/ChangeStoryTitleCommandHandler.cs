@@ -21,7 +21,7 @@ namespace Agile.Planning.Domain.CommandHandlers
 
         public async Task Handle(ChangeStoryTitleCommand command)
         {
-            var story = _repository.GetById<Story>(command.Id).Result;
+            var story = await _repository.GetById<Story>(command.Id);
             story.ChangeTitle(command.Title);
             await _repository.Save(story, Guid.NewGuid());
         }

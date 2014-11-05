@@ -47,7 +47,9 @@ namespace Agile.Common.Cqrs.Implementation.Persistence
         public async Task<TAggregate> GetById<TAggregate>(Guid id, int version) where TAggregate : class, IAggregate
         {
             if (version <= 0)
+            {
                 throw new InvalidOperationException("Cannot get version <= 0");
+            }
 
             var streamName = _aggregateIdToStreamName(typeof(TAggregate), id);
             var aggregate = ConstructAggregate<TAggregate>();
@@ -65,19 +67,30 @@ namespace Agile.Common.Cqrs.Implementation.Persistence
                     await _eventStoreConnection.ReadStreamEventsForwardAsync(streamName, start, sliceCount, false);
 
                 if (currentSlice.Status == SliceReadStatus.StreamNotFound)
+                {
                     throw new AggregateNotFoundException(id, typeof(TAggregate));
+                }
+
 
                 if (currentSlice.Status == SliceReadStatus.StreamDeleted)
+                {
                     throw new AggregateDeletedException(id, typeof(TAggregate));
+                }
 
                 sliceStart = currentSlice.NextEventNumber;
 
                 foreach (var evnt in currentSlice.Events)
+                {
                     aggregate.ApplyEvent(DeserializeEvent(evnt.OriginalEvent.Metadata, evnt.OriginalEvent.Data));
+                }
+                    
             } while (version >= currentSlice.NextEventNumber && !currentSlice.IsEndOfStream);
 
             if (aggregate.Version != version && version < Int32.MaxValue)
+            {
                 throw new AggregateVersionException(id, typeof(TAggregate), aggregate.Version, version);
+            }
+                
 
             return aggregate;
         }
@@ -100,6 +113,7 @@ namespace Agile.Common.Cqrs.Implementation.Persistence
                 {CommitIdHeader, commitId},
                 {AggregateClrTypeHeader, aggregate.GetType().AssemblyQualifiedName}
             };
+
             updateHeaders(commitHeaders);
 
             var streamName = _aggregateIdToStreamName(aggregate.GetType(), aggregate.Id);

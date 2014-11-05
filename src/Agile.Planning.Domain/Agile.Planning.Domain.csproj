@@ -46,10 +46,11 @@
     <Compile Include="Commands\AddStoryCommand.cs" />
     <Compile Include="Commands\ChangeStoryTitleCommand.cs" />
     <Compile Include="Commands\DeleteStoryCommand.cs" />
-    <Compile Include="Models\Story.cs" />
-    <Compile Include="Events\StoryAdded.cs" />
-    <Compile Include="Events\StoryDeleted.cs" />
-    <Compile Include="Events\StoryTitleChanged.cs" />
+    <Compile Include="Models\Sprint.cs" />
+    <Compile Include="Models\Stories\Story.cs" />
+    <Compile Include="Models\Stories\StoryAdded.cs" />
+    <Compile Include="Models\Stories\StoryDeleted.cs" />
+    <Compile Include="Models\Stories\StoryTitleChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

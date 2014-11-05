@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Agile.Common.Cqrs.Core;
 using Agile.Planning.DataTransfer.Story;
-using Agile.Planning.Domain.Events;
 
-namespace Agile.Planning.Domain.Models
+namespace Agile.Planning.Domain.Models.Stories
 {
     public class Story : AggregateBase
     {
         public string Title { get; private set; }
         public string Description { get; private set; }
         public StoryStatus Status { get; private set; }
+        public Guid? SprintId { get; private set; }
 
         private Story()
         {
@@ -59,6 +55,11 @@ namespace Agile.Planning.Domain.Models
             }
 
             RaiseEvent(new StoryDeleted(Id));
+        }
+
+        public bool IsCommittedToSprint()
+        {
+            return SprintId.HasValue;
         }
     }
 }

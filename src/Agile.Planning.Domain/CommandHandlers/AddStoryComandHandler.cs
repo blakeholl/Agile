@@ -7,6 +7,7 @@ using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Persistence;
 using Agile.Planning.Domain.Commands;
 using Agile.Planning.Domain.Models;
+using Agile.Planning.Domain.Models.Stories;
 
 namespace Agile.Planning.Domain.CommandHandlers
 {

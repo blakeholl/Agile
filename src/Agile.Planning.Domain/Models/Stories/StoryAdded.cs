@@ -1,7 +1,7 @@
 ﻿using System;
 using Agile.Common.Cqrs;
 
-namespace Agile.Planning.Domain.Events
+namespace Agile.Planning.Domain.Models.Stories
 {
     public class StoryAdded : IDomainEvent
     {

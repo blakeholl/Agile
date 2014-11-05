@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.Common.Cqrs.Implement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.Web", "Agile.Web\Agile.Web.csproj", "{F1BC2111-32D9-4297-A87E-AD875471A3C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.Planning.DataTransfer", "Agile.Planning.DataTransfer\Agile.Planning.DataTransfer.csproj", "{9C8F5B40-3284-45D3-9E38-B8F940AF2163}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{F1BC2111-32D9-4297-A87E-AD875471A3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1BC2111-32D9-4297-A87E-AD875471A3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1BC2111-32D9-4297-A87E-AD875471A3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C8F5B40-3284-45D3-9E38-B8F940AF2163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C8F5B40-3284-45D3-9E38-B8F940AF2163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C8F5B40-3284-45D3-9E38-B8F940AF2163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C8F5B40-3284-45D3-9E38-B8F940AF2163}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,5 +51,6 @@ Global
 		{213A28AA-7EFF-4C7E-B17F-F699E01F3CCB} = {22EB4FEC-6921-4B9C-A5CF-B0BBE8867AC1}
 		{F30775F2-E6E6-4D38-96D7-06414DAAB473} = {608CDB9B-F77C-4086-8411-B7B3A49DDA8A}
 		{9E069F8E-8590-465A-9ADB-57BCAA1D7E0A} = {608CDB9B-F77C-4086-8411-B7B3A49DDA8A}
+		{9C8F5B40-3284-45D3-9E38-B8F940AF2163} = {22EB4FEC-6921-4B9C-A5CF-B0BBE8867AC1}
 	EndGlobalSection
 EndGlobal

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Agile.Common.Cqrs.Core;
+using Agile.Planning.DataTransfer.Story;
+using Agile.Planning.Domain.Events;
 
 namespace Agile.Planning.Domain.Models
 {
@@ -11,11 +13,13 @@ namespace Agile.Planning.Domain.Models
     {
         public string Title { get; private set; }
         public string Description { get; private set; }
+        public StoryStatus Status { get; private set; }
 
         private Story()
         {
             Register<StoryAdded>(Handle);
             Register<StoryTitleChanged>(Handle);
+            Register<StoryDeleted>(Handle);
         }
 
         public Story(Guid id, string title, string description)
@@ -27,6 +31,7 @@ namespace Agile.Planning.Domain.Models
         private void Handle(StoryAdded @event)
         {
             Id = @event.Id;
+            Status = StoryStatus.Created;
             Title = @event.Title;
             Description = @event.Description;
         }
@@ -36,33 +41,24 @@ namespace Agile.Planning.Domain.Models
             Title = @event.Title;
         }
 
+        private void Handle(StoryDeleted @event)
+        {
+            Status = StoryStatus.Deleted;
+        }
+
         public void ChangeTitle(string title)
         {
-            RaiseEvent(new StoryTitleChanged(title));
+            RaiseEvent(new StoryTitleChanged(Id, title));
         }
-    }
 
-    public class StoryTitleChanged
-    {
-        public StoryTitleChanged(string title)
+        public void Delete()
         {
-            Title = title;
+            if (Status != StoryStatus.Created)
+            {
+                throw new InvalidOperationException("Can only perform this operation when in Created status");
+            }
+
+            RaiseEvent(new StoryDeleted(Id));
         }
-
-        public readonly string Title;
-    }
-
-    public class StoryAdded
-    {
-        public StoryAdded(Guid id, string title, string description)
-        {
-            Id = id;
-            Title = title;
-            Description = description;
-        }
-
-        public readonly Guid Id;
-        public readonly string Title;
-        public readonly string Description;
     }
 }

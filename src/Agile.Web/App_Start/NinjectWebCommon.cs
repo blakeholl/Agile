@@ -87,6 +87,14 @@ namespace Agile.Web.App_Start
             kernel.Bind<ICommandHandler<AddStoryCommand>>()
                 .To<AddStoryComandHandler>()
                 .InRequestScope();
+
+            kernel.Bind<ICommandHandler<ChangeStoryTitleCommand>>()
+                .To<ChangeStoryTitleCommandHandler>()
+                .InRequestScope();
+
+            kernel.Bind<ICommandHandler<DeleteStoryCommand>>()
+                .To<DeleteStoryCommandHandler>()
+                .InRequestScope();
         }        
     }
 }

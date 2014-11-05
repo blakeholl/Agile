@@ -6,48 +6,61 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Agile.Common.Cqrs;
-using Agile.Common.Cqrs.Implementation.Persistence;
+using Agile.Planning.DataTransfer.Story;
 using Agile.Planning.Domain.Commands;
-using Agile.Planning.Domain.Models;
 
 namespace Agile.Web.Controllers
 {
+    [RoutePrefix("api/stories")]
     public class StoriesController : ApiController
     {
-        private readonly ICommandHandler<AddStoryCommand> _commandHandler;
+        private readonly ICommandHandler<AddStoryCommand> _addStoryCommandHandler;
+        private readonly ICommandHandler<ChangeStoryTitleCommand> _changeStoryTitleCommandHandler;
+        private readonly ICommandHandler<DeleteStoryCommand> _deleteStoryCommandHandler;
 
-        public StoriesController(ICommandHandler<AddStoryCommand> commandHandler)
+        public StoriesController(ICommandHandler<AddStoryCommand> addStoryCommandHandler, 
+            ICommandHandler<ChangeStoryTitleCommand> changeStoryTitleCommandHandler, 
+            ICommandHandler<DeleteStoryCommand> deleteStoryCommandHandler)
         {
-            _commandHandler = commandHandler;
+            _addStoryCommandHandler = addStoryCommandHandler;
+            _changeStoryTitleCommandHandler = changeStoryTitleCommandHandler;
+            _deleteStoryCommandHandler = deleteStoryCommandHandler;
         }
 
-        public async Task<IHttpActionResult> Get()
+        [Route, HttpPost]
+        public async Task<IHttpActionResult> CreateStory(CreateStoryModel model)
         {
-            return await Post(new CreateStoryModel()
+            await _addStoryCommandHandler.Handle(new AddStoryCommand()
             {
-                Title = "Some random title",
-                Description = "Some random description"
+                Id = model.Id,
+                Description = model.Description, 
+                Title = model.Title
             });
+
+            return Created(Url.Link("DefaultApi", new {controller = "Stories"}), new {model.Id});
         }
 
-        public async Task<IHttpActionResult> Post(CreateStoryModel model)
+        [Route("{id:guid}/rename"), HttpPost]
+        public async Task<IHttpActionResult> RenameStory(Guid id, RenameStoryModel model)
         {
-            var command = new AddStoryCommand()
+            await _changeStoryTitleCommandHandler.Handle(new ChangeStoryTitleCommand()
             {
-                Id = Guid.NewGuid(),
-                Title = model.Title,
-                Description = model.Description
-            };
+                Id = id,
+                Title = model.Title
+            });
 
-            await _commandHandler.Handle(command);
-
-            return Created(Url.Link("DefaultApi", new {controller = "Stories"}), new {command.Id});
+            return Ok();
         }
-    }
 
-    public class CreateStoryModel
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        [Route("{id:guid}"), HttpDelete]
+        public async Task<IHttpActionResult> DeleteStory(Guid id)
+        {
+            await _deleteStoryCommandHandler.Handle(new DeleteStoryCommand()
+            {
+                Id = id
+            });
+
+            return Ok();
+        }
     }
 }

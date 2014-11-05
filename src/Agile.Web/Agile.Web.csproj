@@ -108,10 +108,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Agile.Common.Cqrs.Implementation\Agile.Common.Cqrs.Implementation.csproj">
       <Project>{9e069f8e-8590-465a-9adb-57bcaa1d7e0a}</Project>
@@ -120,6 +117,10 @@
     <ProjectReference Include="..\Agile.Common.Cqrs\Agile.Common.Cqrs.csproj">
       <Project>{f30775f2-e6e6-4d38-96d7-06414daab473}</Project>
       <Name>Agile.Common.Cqrs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agile.Planning.DataTransfer\Agile.Planning.DataTransfer.csproj">
+      <Project>{9C8F5B40-3284-45D3-9E38-B8F940AF2163}</Project>
+      <Name>Agile.Planning.DataTransfer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agile.Planning.Domain\Agile.Planning.Domain.csproj">
       <Project>{213a28aa-7eff-4c7e-b17f-f699e01f3ccb}</Project>

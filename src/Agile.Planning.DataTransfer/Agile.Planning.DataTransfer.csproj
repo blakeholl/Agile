@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{213A28AA-7EFF-4C7E-B17F-F699E01F3CCB}</ProjectGuid>
+    <ProjectGuid>{9C8F5B40-3284-45D3-9E38-B8F940AF2163}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agile.Planning.Domain</RootNamespace>
-    <AssemblyName>Agile.Planning.Domain</AssemblyName>
+    <RootNamespace>Agile.Planning.DataTransfer</RootNamespace>
+    <AssemblyName>Agile.Planning.DataTransfer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,39 +29,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlers\AddStoryComandHandler.cs" />
-    <Compile Include="CommandHandlers\ChangeStoryTitleCommandHandler.cs" />
-    <Compile Include="CommandHandlers\DeleteStoryCommandHandler.cs" />
-    <Compile Include="Commands\AddStoryCommand.cs" />
-    <Compile Include="Commands\ChangeStoryTitleCommand.cs" />
-    <Compile Include="Commands\DeleteStoryCommand.cs" />
-    <Compile Include="Models\Story.cs" />
-    <Compile Include="Events\StoryAdded.cs" />
-    <Compile Include="Events\StoryDeleted.cs" />
-    <Compile Include="Events\StoryTitleChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Agile.Common.Cqrs\Agile.Common.Cqrs.csproj">
-      <Project>{F30775F2-E6E6-4D38-96D7-06414DAAB473}</Project>
-      <Name>Agile.Common.Cqrs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agile.Planning.DataTransfer\Agile.Planning.DataTransfer.csproj">
-      <Project>{9C8F5B40-3284-45D3-9E38-B8F940AF2163}</Project>
-      <Name>Agile.Planning.DataTransfer</Name>
-    </ProjectReference>
+    <Compile Include="Story\CreateStoryModel.cs" />
+    <Compile Include="Story\RenameStoryModel.cs" />
+    <Compile Include="Story\StoryStatus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -40,13 +40,17 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlers\AddStoryComandHandler.cs" />
-    <Compile Include="CommandHandlers\ChangeStoryTitleCommandHandler.cs" />
-    <Compile Include="CommandHandlers\DeleteStoryCommandHandler.cs" />
-    <Compile Include="Commands\AddStoryCommand.cs" />
-    <Compile Include="Commands\ChangeStoryTitleCommand.cs" />
-    <Compile Include="Commands\DeleteStoryCommand.cs" />
-    <Compile Include="Models\Sprint.cs" />
+    <Compile Include="CommandHandlers\Products\AddProductCommandHandler.cs" />
+    <Compile Include="CommandHandlers\Stories\AddStoryComandHandler.cs" />
+    <Compile Include="CommandHandlers\Stories\ChangeStoryTitleCommandHandler.cs" />
+    <Compile Include="CommandHandlers\Stories\DeleteStoryCommandHandler.cs" />
+    <Compile Include="Commands\Products\AddProductCommand.cs" />
+    <Compile Include="Commands\Products\AddStoryCommand.cs" />
+    <Compile Include="Commands\Stories\ChangeStoryTitleCommand.cs" />
+    <Compile Include="Commands\Stories\DeleteStoryCommand.cs" />
+    <Compile Include="Models\Products\Product.cs" />
+    <Compile Include="Models\Products\ProductStoryAdded.cs" />
+    <Compile Include="Models\Sprints\Sprint.cs" />
     <Compile Include="Models\Stories\Story.cs" />
     <Compile Include="Models\Stories\StoryAdded.cs" />
     <Compile Include="Models\Stories\StoryDeleted.cs" />

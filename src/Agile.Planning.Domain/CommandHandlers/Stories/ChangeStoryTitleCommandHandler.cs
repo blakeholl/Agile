@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Persistence;
 using Agile.Planning.Domain.Commands;
-using Agile.Planning.Domain.Models;
+using Agile.Planning.Domain.Commands.Stories;
 using Agile.Planning.Domain.Models.Stories;
 
-namespace Agile.Planning.Domain.CommandHandlers
+namespace Agile.Planning.Domain.CommandHandlers.Stories
 {
     public class ChangeStoryTitleCommandHandler : ICommandHandler<ChangeStoryTitleCommand>
     {

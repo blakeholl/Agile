@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Agile.Common.Cqrs.Core;
 
-namespace Agile.Planning.Domain.Models
+namespace Agile.Planning.Domain.Models.Sprints
 {
     public class Sprint : AggregateBase
     {

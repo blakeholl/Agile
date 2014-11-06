@@ -5,7 +5,11 @@ using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Implementation.Persistence;
 using Agile.Common.Cqrs.Persistence;
 using Agile.Planning.Domain.CommandHandlers;
+using Agile.Planning.Domain.CommandHandlers.Products;
+using Agile.Planning.Domain.CommandHandlers.Stories;
 using Agile.Planning.Domain.Commands;
+using Agile.Planning.Domain.Commands.Products;
+using Agile.Planning.Domain.Commands.Stories;
 using EventStore.ClientAPI;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Agile.Web.App_Start.NinjectWebCommon), "Start")]
@@ -94,6 +98,10 @@ namespace Agile.Web.App_Start
 
             kernel.Bind<ICommandHandler<DeleteStoryCommand>>()
                 .To<DeleteStoryCommandHandler>()
+                .InRequestScope();
+
+            kernel.Bind<ICommandHandler<AddProductCommand>>()
+                .To<AddProductCommandHandler>()
                 .InRequestScope();
         }        
     }

@@ -8,13 +8,15 @@ using System.Web.Http;
 using Agile.Common.Cqrs;
 using Agile.Planning.DataTransfer.Story;
 using Agile.Planning.Domain.Commands;
+using Agile.Planning.Domain.Commands.Products;
+using Agile.Planning.Domain.Commands.Stories;
 
 namespace Agile.Web.Controllers
 {
     [RoutePrefix("api/stories")]
     public class StoriesController : ApiController
     {
-        private readonly ICommandHandler<AddStoryCommand> _addStoryCommandHandler;
+        
         private readonly ICommandHandler<ChangeStoryTitleCommand> _changeStoryTitleCommandHandler;
         private readonly ICommandHandler<DeleteStoryCommand> _deleteStoryCommandHandler;
 
@@ -22,22 +24,8 @@ namespace Agile.Web.Controllers
             ICommandHandler<ChangeStoryTitleCommand> changeStoryTitleCommandHandler, 
             ICommandHandler<DeleteStoryCommand> deleteStoryCommandHandler)
         {
-            _addStoryCommandHandler = addStoryCommandHandler;
             _changeStoryTitleCommandHandler = changeStoryTitleCommandHandler;
             _deleteStoryCommandHandler = deleteStoryCommandHandler;
-        }
-
-        [Route, HttpPost]
-        public async Task<IHttpActionResult> CreateStory(CreateStoryModel model)
-        {
-            await _addStoryCommandHandler.Handle(new AddStoryCommand()
-            {
-                Id = model.Id,
-                Description = model.Description, 
-                Title = model.Title
-            });
-
-            return Created(Url.Link("DefaultApi", new {controller = "Stories"}), new {model.Id});
         }
 
         [Route("{id:guid}/rename"), HttpPost]

@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Persistence;
 using Agile.Planning.Domain.Commands;
-using Agile.Planning.Domain.Models;
+using Agile.Planning.Domain.Commands.Products;
+using Agile.Planning.Domain.Commands.Stories;
+using Agile.Planning.Domain.Models.Products;
 using Agile.Planning.Domain.Models.Stories;
 
-namespace Agile.Planning.Domain.CommandHandlers
+namespace Agile.Planning.Domain.CommandHandlers.Stories
 {
     public class AddStoryComandHandler : ICommandHandler<AddStoryCommand>
     {
@@ -22,9 +21,9 @@ namespace Agile.Planning.Domain.CommandHandlers
 
         public async Task Handle(AddStoryCommand command)
         {
-            var story = new Story(command.Id, command.Title, command.Description);
-
-            await _repository.Save(story, Guid.NewGuid());
+            var product = await _repository.GetById<Product>(command.ProductId);
+            product.AddStory(command.StoryId, command.Title, command.Description);
+            await _repository.Save(product, Guid.NewGuid());
         }
     }
 }

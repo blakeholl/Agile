@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+using Agile.Planning.Domain.Models.Products;
 using EventStore.ClientAPI;
 using EventStore.ClientAPI.SystemData;
 using Newtonsoft.Json;
@@ -16,9 +16,13 @@ namespace Agile.DomainEventProcessor
     {
         private const string AggregateClrTypeHeader = "AggregateClrTypeName";
         private const string EventClrTypeHeader = "EventClrTypeName";
+        private static readonly Dictionary<Type, Action<object>> Handlers = new Dictionary<Type, Action<object>>();
 
         static void Main(string[] args)
         {
+            Action<object> productAddedHandler = o => Console.WriteLine(o.GetType());
+            Handlers.Add(typeof (ProductAdded), productAddedHandler);
+
             var kernel = ConfigureKernel();
             var connection = kernel.Get<IEventStoreConnection>();
             ConfigureSub(connection);
@@ -64,23 +68,36 @@ namespace Agile.DomainEventProcessor
                 return;
             }
 
-            Console.WriteLine(resolvedEvent.OriginalEvent.EventStreamId);
-            Console.WriteLine(Guid.Parse(resolvedEvent.OriginalStreamId.Split('-').Last()).ToString("B"));
-            Console.WriteLine(resolvedEvent.OriginalEventNumber);
-            var @event = DeserializeEvent(resolvedEvent.Event.Metadata, resolvedEvent.Event.Data);
-            Console.WriteLine(@event.GetType().FullName);
+            var wrapper = DeserializeEvent(resolvedEvent);
+            HandleEvent(wrapper);
         }
 
-        private static dynamic DeserializeEvent(byte[] metadata, byte[] data)
+        private static void HandleEvent(EventWrapper eventWrapper)
         {
-            var meta = JObject.Parse(Encoding.UTF8.GetString(metadata));
+            Action<object> handler;
 
-            var aggregateClrTypeName = meta.Property(AggregateClrTypeHeader).Value;
-            var eventClrTypeName = meta.Property(EventClrTypeHeader).Value;
+            if (!Handlers.TryGetValue(eventWrapper.Event.GetType(), out handler))
+            {
+                return;
+            }
 
-            Console.WriteLine("{0} {1}", aggregateClrTypeName, eventClrTypeName);
-            
-            return JsonConvert.DeserializeObject(Encoding.UTF8.GetString(data), Type.GetType((string)eventClrTypeName));
+            handler(eventWrapper.Event);
+        }
+
+        private static EventWrapper DeserializeEvent(ResolvedEvent resolvedEvent)
+        {
+            var metadata = JObject.Parse(Encoding.UTF8.GetString(resolvedEvent.OriginalEvent.Metadata));
+            var eventClrTypeName = metadata.Property(EventClrTypeHeader).Value.ToString();
+            var aggregateClrTypeName = metadata.Property(AggregateClrTypeHeader).Value.ToString();
+            var eventType = Type.GetType(eventClrTypeName);
+
+            return new EventWrapper()
+            {
+                AggregateType = aggregateClrTypeName,
+                AggregateId = Guid.Parse(resolvedEvent.OriginalEvent.EventStreamId.Split('-').Last()),
+                Event = JsonConvert.DeserializeObject(Encoding.UTF8.GetString(resolvedEvent.OriginalEvent.Data), eventType)
+            };
+
         }
 
         private static bool IsSystemEvent(ResolvedEvent resolvedEvent)

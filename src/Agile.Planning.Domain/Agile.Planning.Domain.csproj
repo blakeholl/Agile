@@ -49,6 +49,7 @@
     <Compile Include="Commands\Stories\ChangeStoryTitleCommand.cs" />
     <Compile Include="Commands\Stories\DeleteStoryCommand.cs" />
     <Compile Include="Models\Products\Product.cs" />
+    <Compile Include="Models\Products\ProductAdded.cs" />
     <Compile Include="Models\Products\ProductStoryAdded.cs" />
     <Compile Include="Models\Sprints\Sprint.cs" />
     <Compile Include="Models\Stories\Story.cs" />

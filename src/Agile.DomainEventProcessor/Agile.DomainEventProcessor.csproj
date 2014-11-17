@@ -51,12 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Agile.Common.Cqrs\Agile.Common.Cqrs.csproj">
+      <Project>{F30775F2-E6E6-4D38-96D7-06414DAAB473}</Project>
+      <Name>Agile.Common.Cqrs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agile.Planning.Domain\Agile.Planning.Domain.csproj">
+      <Project>{213a28aa-7eff-4c7e-b17f-f699e01f3ccb}</Project>
+      <Name>Agile.Planning.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -55,20 +55,27 @@ namespace Agile.Common.Cqrs.Core
             foreach (var apply in applyMethods)
             {
                 var applyMethod = apply.Method;
-                _handlers.Add(apply.MessageType, m => applyMethod.Invoke(aggregate, new[] { m as object }));
+                _handlers.Add(apply.MessageType, m => applyMethod.Invoke(aggregate, new[] { m }));
             }
         }
 
         public void Dispatch(object eventMessage)
         {
             if (eventMessage == null)
+            {
                 throw new ArgumentNullException("eventMessage");
+            }
 
             Action<object> handler;
-            if (_handlers.TryGetValue(eventMessage.GetType(), out handler))
-                handler(eventMessage);
-            else if (_throwOnApplyNotFound)
-                _registered.ThrowHandlerNotFound(eventMessage);
+            if (!_handlers.TryGetValue(eventMessage.GetType(), out handler))
+            {
+                if (_throwOnApplyNotFound)
+                    _registered.ThrowHandlerNotFound(eventMessage);
+
+                return;
+            }
+
+            handler(eventMessage);
         }
 
         private void Register(Type messageType, Action<object> handler)

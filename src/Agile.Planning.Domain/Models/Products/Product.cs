@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Core;
 
 namespace Agile.Planning.Domain.Models.Products
@@ -39,17 +38,5 @@ namespace Agile.Planning.Domain.Models.Products
         }
 
         public string Name { get; private set; }
-    }
-
-    public class ProductAdded : IDomainEvent
-    {
-        public ProductAdded(Guid id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
-        public readonly Guid Id;
-        public readonly string Name;
     }
 }

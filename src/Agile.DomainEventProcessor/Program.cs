@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
-using System.Text;
-using Agile.Common.Cqrs;
 using Agile.Common.EventPublishing;
 using Agile.Planning.Domain.Models.Products;
 using EventStore.ClientAPI;
-using EventStore.ClientAPI.SystemData;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Ninject;
 
 namespace Agile.DomainEventProcessor
@@ -37,6 +31,29 @@ namespace Agile.DomainEventProcessor
                     return connection;
                 })
                 .InSingletonScope();
+
+            kernel.Bind<IEventPublisher>()
+                .ToMethod(x =>
+                {
+                    var eventPublisher = new EventPublisher();
+                    var container = new FakeContainer(Activator.CreateInstance);
+
+                    var eventAPipeline = new SubscriberFactoryPipeline<ProductAdded>(container);
+                    //eventAPipeline.AddSubscriber<SomeEventASubscriber>();
+                    eventPublisher.AddPipeline(eventAPipeline);
+
+                    //var eventBPipeline = new SubscriberFactoryPipeline<EventB>(container);
+                    //eventBPipeline.AddSubscriberFactory(() => new SomeEventBSubscriber());
+                    //eventBPipeline.AddSubscriberFactory(() => new AnotherEventBSubscriber());
+                    //eventPublisher.AddPipeline(eventBPipeline);
+
+                    //var eventCPipeline = new SubscriberFactoryPipeline<EventC>(container);
+                    //eventCPipeline.AddSubscriberFactory(() => new SomeEventCSubscriber());
+                    //eventPublisher.AddPipeline(eventCPipeline);
+
+                    return eventPublisher;
+
+                }).InSingletonScope();
 
             return kernel;
         }

@@ -39,15 +39,16 @@ namespace Agile.DomainEventProcessor
 
         }
 
-        private void EventAppeared(EventStoreCatchUpSubscription eventStoreCatchUpSubscription, ResolvedEvent resolvedEvent)
+        private void EventAppeared(EventStoreCatchUpSubscription eventStoreCatchUpSubscription,
+            ResolvedEvent resolvedEvent)
         {
             if (IsSystemEvent(resolvedEvent))
             {
                 return;
             }
 
-             var @event = DeserializeEvent(resolvedEvent);
-            _eventPublisher.Publish(@event);
+            var @event = DeserializeEvent(resolvedEvent);
+            _eventPublisher.Publish((dynamic) @event).GetAwaiter().GetResult();
         }
 
         private static object DeserializeEvent(ResolvedEvent resolvedEvent)

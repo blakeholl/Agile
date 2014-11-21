@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F30775F2-E6E6-4D38-96D7-06414DAAB473}</ProjectGuid>
+    <ProjectGuid>{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agile.Common.Cqrs</RootNamespace>
-    <AssemblyName>Agile.Common.Cqrs</AssemblyName>
+    <RootNamespace>Agile.Common.EventPublishing</RootNamespace>
+    <AssemblyName>Agile.Common.EventPublishing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,33 +32,23 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AggregateBase.cs" />
-    <Compile Include="Core\ConflictDetector.cs" />
-    <Compile Include="Core\ConventionEventRouter.cs" />
-    <Compile Include="Core\ExtensionMethods.cs" />
-    <Compile Include="Core\HandlerForDomainEventNotFoundException.cs" />
-    <Compile Include="IAggregate.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="ICommandHandler.cs" />
-    <Compile Include="IDetectConflicts.cs" />
-    <Compile Include="IDomainEvent.cs" />
-    <Compile Include="IMemento.cs" />
-    <Compile Include="IQuery.cs" />
-    <Compile Include="IQueryHandler.cs" />
-    <Compile Include="IRouteEvents.cs" />
-    <Compile Include="Persistence\PersistenceException.cs" />
-    <Compile Include="Persistence\ConflictingCommandException.cs" />
-    <Compile Include="Persistence\IConflictWith.cs" />
-    <Compile Include="Persistence\IConstructAggregates.cs" />
-    <Compile Include="Persistence\IRepository.cs" />
-    <Compile Include="Persistence\RepositoryExtensions.cs" />
+    <Compile Include="SubscriberFactoryPipeline.cs" />
+    <Compile Include="SingletonSubscriberPipeline.cs" />
+    <Compile Include="ISubscriberPipeline.cs" />
+    <Compile Include="IEventSubscriberFactory.cs" />
+    <Compile Include="IEventSubscriber.cs" />
+    <Compile Include="IContainer.cs" />
+    <Compile Include="IEventPublisher.cs" />
+    <Compile Include="EventPublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\RegistrationEventRouter.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

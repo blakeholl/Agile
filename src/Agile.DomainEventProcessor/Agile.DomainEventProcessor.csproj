@@ -44,6 +44,18 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,7 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventWrapper.cs" />
+    <Compile Include="EventStorePublisher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +75,10 @@
     <ProjectReference Include="..\Agile.Common.Cqrs\Agile.Common.Cqrs.csproj">
       <Project>{F30775F2-E6E6-4D38-96D7-06414DAAB473}</Project>
       <Name>Agile.Common.Cqrs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Agile.Common.EventPublishing\Agile.Common.EventPublishing.csproj">
+      <Project>{dcf30ebb-35e8-45eb-9d01-84fd2c9a3ce8}</Project>
+      <Name>Agile.Common.EventPublishing</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agile.Planning.Domain\Agile.Planning.Domain.csproj">
       <Project>{213a28aa-7eff-4c7e-b17f-f699e01f3ccb}</Project>

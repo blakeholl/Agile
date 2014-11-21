@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTester", "ApiTester\ApiT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.DomainEventProcessor", "Agile.DomainEventProcessor\Agile.DomainEventProcessor.csproj", "{9376DCB0-AE82-42A3-BE9E-D0DB2011C5B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.Common.EventPublishing", "Agile.Common.EventPublishing\Agile.Common.EventPublishing.csproj", "{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{9376DCB0-AE82-42A3-BE9E-D0DB2011C5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9376DCB0-AE82-42A3-BE9E-D0DB2011C5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9376DCB0-AE82-42A3-BE9E-D0DB2011C5B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{F30775F2-E6E6-4D38-96D7-06414DAAB473} = {608CDB9B-F77C-4086-8411-B7B3A49DDA8A}
 		{9E069F8E-8590-465A-9ADB-57BCAA1D7E0A} = {608CDB9B-F77C-4086-8411-B7B3A49DDA8A}
 		{9C8F5B40-3284-45D3-9E38-B8F940AF2163} = {22EB4FEC-6921-4B9C-A5CF-B0BBE8867AC1}
+		{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8} = {608CDB9B-F77C-4086-8411-B7B3A49DDA8A}
 	EndGlobalSection
 EndGlobal

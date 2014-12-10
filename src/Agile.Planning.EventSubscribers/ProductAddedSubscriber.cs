@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Agile.Common.EventPublishing;
 using Agile.Planning.Domain.Models.Products;
 
-namespace Agile.Planning.EventHandlers
+namespace Agile.Planning.EventSubscribers
 {
     public class ProductAddedSubscriber : IEventSubscriber<ProductAdded>
     {
         public async Task Handle(ProductAdded @event)
         {
-            Console.WriteLine("Product Added!");
+            Console.WriteLine("Product Added: " + @event.Id);
         }
     }
 }

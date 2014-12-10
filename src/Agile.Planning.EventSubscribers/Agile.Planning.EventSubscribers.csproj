@@ -7,8 +7,8 @@
     <ProjectGuid>{719C00F2-5A8B-4762-ABAB-A830535CA344}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agile.Planning.EventHandlers</RootNamespace>
-    <AssemblyName>Agile.Planning.EventHandlers</AssemblyName>
+    <RootNamespace>Agile.Planning.EventSubscribers</RootNamespace>
+    <AssemblyName>Agile.Planning.EventSubscribers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

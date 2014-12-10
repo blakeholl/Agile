@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.DomainEventProcessor"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.Common.EventPublishing", "Agile.Common.EventPublishing\Agile.Common.EventPublishing.csproj", "{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.Planning.EventHandlers", "Agile.Planning.EventHandlers\Agile.Planning.EventHandlers.csproj", "{719C00F2-5A8B-4762-ABAB-A830535CA344}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agile.Planning.EventSubscribers", "Agile.Planning.EventSubscribers\Agile.Planning.EventSubscribers.csproj", "{719C00F2-5A8B-4762-ABAB-A830535CA344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

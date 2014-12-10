@@ -44,23 +44,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core">
-      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces">
-      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq">
-      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventStorePublisher.cs" />
@@ -85,9 +71,9 @@
       <Project>{213a28aa-7eff-4c7e-b17f-f699e01f3ccb}</Project>
       <Name>Agile.Planning.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Agile.Planning.EventHandlers\Agile.Planning.EventHandlers.csproj">
+    <ProjectReference Include="..\Agile.Planning.EventSubscribers\Agile.Planning.EventSubscribers.csproj">
       <Project>{719C00F2-5A8B-4762-ABAB-A830535CA344}</Project>
-      <Name>Agile.Planning.EventHandlers</Name>
+      <Name>Agile.Planning.EventSubscribers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

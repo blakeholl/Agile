@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using Agile.Common.EventPublishing;
 using Agile.Planning.Domain.Models.Products;
-using Agile.Planning.EventHandlers;
+using Agile.Planning.EventSubscribers;
 using EventStore.ClientAPI;
 using Ninject;
 

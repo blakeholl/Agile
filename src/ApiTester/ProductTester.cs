@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ApiTester
 {
-    public class Tester
+    public class ProductTester
     {
         private readonly HttpClient _client;
 
-        public Tester(HttpClient client)
+        public ProductTester(HttpClient client)
         {
             _client = client;
         }
@@ -21,19 +21,11 @@ namespace ApiTester
         {
             var id = Guid.NewGuid().ToString("B");
 
-            await _client.PostAsJsonAsync("/api/Stories", new
+            await _client.PostAsJsonAsync("/api/Products", new
             {
                 Id = id,
-                Title = RandomString(25),
-                Description = RandomString(400)
+                Name = RandomString(25),
             });
-
-            await _client.PostAsJsonAsync("/api/Stories/" + id + "/rename", new
-            {
-                Title = RandomString(50)
-            });
-
-            await _client.DeleteAsync("/api/Stories/" + id);
         }
 
         private static string RandomString(int length, string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")

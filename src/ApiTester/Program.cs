@@ -41,7 +41,7 @@ namespace ApiTester
 
         private async static void Consume()
         {
-            var tester = new Tester(new HttpClient() { BaseAddress = new Uri("http://localhost:7656") });
+            var tester = new ProductTester(new HttpClient() { BaseAddress = new Uri("http://localhost:7656") });
 
             foreach (var i in Tests.GetConsumingEnumerable())
             {

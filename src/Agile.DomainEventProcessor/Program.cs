@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using Agile.Common.EventPublishing;
 using Agile.Planning.Domain.Models.Products;
+using Agile.Planning.EventHandlers;
 using EventStore.ClientAPI;
 using Ninject;
 
@@ -39,7 +40,7 @@ namespace Agile.DomainEventProcessor
                     var container = new FakeContainer(Activator.CreateInstance);
 
                     var eventAPipeline = new SubscriberFactoryPipeline<ProductAdded>(container);
-                    //eventAPipeline.AddSubscriber<SomeEventASubscriber>();
+                    eventAPipeline.AddSubscriber<ProductAddedSubscriber>();
                     eventPublisher.AddPipeline(eventAPipeline);
 
                     //var eventBPipeline = new SubscriberFactoryPipeline<EventB>(container);

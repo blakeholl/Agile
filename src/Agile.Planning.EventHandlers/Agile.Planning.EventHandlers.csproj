@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9376DCB0-AE82-42A3-BE9E-D0DB2011C5B3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{719C00F2-5A8B-4762-ABAB-A830535CA344}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agile.DomainEventProcessor</RootNamespace>
-    <AssemblyName>Agile.DomainEventProcessor</AssemblyName>
+    <RootNamespace>Agile.Planning.EventHandlers</RootNamespace>
+    <AssemblyName>Agile.Planning.EventHandlers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,30 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EventStore.ClientAPI">
-      <HintPath>..\packages\EventStore.Client.3.0.1\lib\net40\EventStore.ClientAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core">
-      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces">
-      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq">
-      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,14 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventStorePublisher.cs" />
-    <Compile Include="FakeContainer.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ProductAddedSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agile.Common.Cqrs\Agile.Common.Cqrs.csproj">
@@ -78,16 +48,12 @@
       <Name>Agile.Common.Cqrs</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agile.Common.EventPublishing\Agile.Common.EventPublishing.csproj">
-      <Project>{dcf30ebb-35e8-45eb-9d01-84fd2c9a3ce8}</Project>
+      <Project>{DCF30EBB-35E8-45EB-9D01-84FD2C9A3CE8}</Project>
       <Name>Agile.Common.EventPublishing</Name>
     </ProjectReference>
     <ProjectReference Include="..\Agile.Planning.Domain\Agile.Planning.Domain.csproj">
-      <Project>{213a28aa-7eff-4c7e-b17f-f699e01f3ccb}</Project>
+      <Project>{213A28AA-7EFF-4C7E-B17F-F699E01F3CCB}</Project>
       <Name>Agile.Planning.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agile.Planning.EventHandlers\Agile.Planning.EventHandlers.csproj">
-      <Project>{719C00F2-5A8B-4762-ABAB-A830535CA344}</Project>
-      <Name>Agile.Planning.EventHandlers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

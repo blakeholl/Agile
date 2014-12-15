@@ -21,6 +21,13 @@ namespace Agile.Planning.Domain.Models.Products
             RaiseEvent(new ProductAdded(id, name));
         }
 
+        public void AddStory(Guid storyId, string title, string description)
+        {
+            RaiseEvent(new ProductStoryAdded(storyId, Id, title, description));
+        }
+
+        public string Name { get; private set; }
+
         private void Handle(ProductStoryAdded @event)
         {
             
@@ -31,12 +38,5 @@ namespace Agile.Planning.Domain.Models.Products
             Id = @event.Id;
             Name = @event.Name;
         }
-
-        public void AddStory(Guid storyId, string title, string description)
-        {
-            RaiseEvent(new ProductStoryAdded(storyId, Id, title, description));
-        }
-
-        public string Name { get; private set; }
     }
 }

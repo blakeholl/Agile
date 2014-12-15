@@ -2,11 +2,8 @@
 using System.Threading.Tasks;
 using Agile.Common.Cqrs;
 using Agile.Common.Cqrs.Persistence;
-using Agile.Planning.Domain.Commands;
 using Agile.Planning.Domain.Commands.Products;
-using Agile.Planning.Domain.Commands.Stories;
 using Agile.Planning.Domain.Models.Products;
-using Agile.Planning.Domain.Models.Stories;
 
 namespace Agile.Planning.Domain.CommandHandlers.Stories
 {
